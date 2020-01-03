@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "/dist/apps/todo-api/main.js", "use": "@now/node" },
+    { "src": "/dist/apps/todo-app/*", "use": "@now/static" }
+  ],
+  "routes": [
+    { "src": "(.*\\..*)", "dest": "$1" },
+    { "src": "/api/(.*)", "dest": "/dist/apps/todo-api/main.js" },
+    { "src": ".*", "dest": "/dist/apps/todo-app/index.html" }
+  ]
+}
