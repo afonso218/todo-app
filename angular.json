@@ -84,10 +84,7 @@
               "apps/todo-app/tsconfig.app.json",
               "apps/todo-app/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/todo-app/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/todo-app/**"]
           }
         },
         "test": {
@@ -121,33 +118,26 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/todo-app-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/todo-app-e2e/**"
-            ]
+            "tsConfig": ["apps/todo-app-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/todo-app-e2e/**"]
           }
         }
       }
     },
-    "api": {
-      "root": "apps/api",
+    "todo-api": {
+      "root": "apps/todo-api",
       "sourceRoot": "apps/todo-api/src",
       "projectType": "application",
-      "prefix": "api",
+      "prefix": "todo-api",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
-            "outputPath": "dist/apps/api",
+            "outputPath": "dist/apps/todo-api",
             "main": "apps/todo-api/src/main.ts",
             "tsConfig": "apps/todo-api/tsconfig.app.json",
-            "assets": [
-              "apps/todo-api/src/assets"
-            ]
+            "assets": ["apps/todo-api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -166,7 +156,7 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "api:build"
+            "buildTarget": "todo-api:build"
           }
         },
         "lint": {
@@ -176,10 +166,7 @@
               "apps/todo-api/tsconfig.app.json",
               "apps/todo-api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/todo-api/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/todo-api/**"]
           }
         },
         "test": {
@@ -204,10 +191,7 @@
               "libs/api-interfaces/tsconfig.lib.json",
               "libs/api-interfaces/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/api-interfaces/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/api-interfaces/**"]
           }
         },
         "test": {
