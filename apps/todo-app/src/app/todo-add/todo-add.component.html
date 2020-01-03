@@ -1,0 +1,12 @@
+<div class="container">
+  <mat-form-field>
+    <mat-card>
+      <input
+        matInput
+        placeholder="Add new ..."
+        (keydown.enter)="addNewTodo()"
+        [(ngModel)]="newTodoContent"
+      />
+    </mat-card>
+  </mat-form-field>
+</div>

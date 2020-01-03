@@ -1,0 +1,13 @@
+<div class="container">
+  <mat-card>
+    <span>{{ todo.content }}</span>
+    <div class="right-box">
+      <!-- <mat-icon color="primary" svgIcon="favorite"></mat-icon> -->
+      <mat-icon
+        color="primary"
+        svgIcon="delete"
+        (click)="onDelete()"
+      ></mat-icon>
+    </div>
+  </mat-card>
+</div>

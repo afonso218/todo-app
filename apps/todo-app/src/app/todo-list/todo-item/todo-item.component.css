@@ -1,0 +1,17 @@
+.container {
+  padding: 10px;
+}
+.right-box {
+  float: right;
+}
+
+mat-icon {
+  cursor: pointer;
+  padding: 5px;
+  opacity: 60%;
+}
+
+mat-icon:hover {
+  color: blue;
+  opacity: 100%;
+}

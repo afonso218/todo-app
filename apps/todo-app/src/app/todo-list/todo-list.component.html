@@ -1,0 +1,8 @@
+<div class="list-container">
+  <div *ngFor="let todo of list">
+    <todo-app-todo-item
+      [todo]="todo"
+      (notifyDelete)="onDelete($event)"
+    ></todo-app-todo-item>
+  </div>
+</div>
