@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Todo } from '@todo-app/api-interfaces';
 
 @Component({
   selector: 'todo-app-todo-item',
@@ -8,8 +9,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent {
-  @Input() todo: TODO;
-  @Output() notifyDelete = new EventEmitter<TODO>();
+  @Input() todo: Todo;
+  @Output() notifyDelete = new EventEmitter<Todo>();
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(

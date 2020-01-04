@@ -1,48 +1,55 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
+import { Todo } from 'libs/api-interfaces/src/lib/todo.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  private nextID = 1;
-  private list: TODO[] = [];
-  $listSubject = new Subject<TODO[]>();
+  private list: Todo[] = [];
+  private API_URL: string = '/api/todo';
+  private $listenerSubject = new Subject<Todo[]>();
 
-  private init_list: TODO[] = [
-    { content: 'Create a desktop app' },
-    { content: 'Create a web app' },
-    { content: 'Create a mobile app' }
-  ];
+  constructor(private readonly http: HttpClient) {}
 
-  constructor() {
-    this.populateWithDummyTodos();
+  public create(content: string) {
+    const todo: Todo = { content: content };
+    return this.http.post<Todo>(this.API_URL, todo).subscribe(
+      data => {
+        this.list.push(data);
+        this.$listenerSubject.next([...this.list]);
+      },
+      err => console.log('HTTP Error', err)
+    );
   }
 
-  private populateWithDummyTodos() {
-    this.init_list.forEach((item, index) => {
-      setTimeout(() => {
-        this.addTodo(item.content);
-      }, 1000 * index);
-    });
+  public fetchAll() {
+    this.http.get<Todo[]>(this.API_URL).subscribe(
+      data => {
+        this.list = data;
+        this.$listenerSubject.next([...this.list]);
+      },
+      err => console.log('HTTP Error', err)
+    );
   }
 
-  public getListSubject() {
-    return this.$listSubject;
-  }
+  public getById(id: number) {}
 
-  public addTodo(content: string) {
-    const todo = { id: this.nextID, content: content };
-    this.nextID += 1;
-    this.list.push(todo);
-    this.$listSubject.next([...this.list]);
-  }
+  public update(todo: Todo) {}
 
   public delete(id: number) {
-    const index = this.list.findIndex(item => item.id === id);
-    if (index !== -1) {
-      this.list.splice(index, 1);
-      this.$listSubject.next([...this.list]);
-    }
+    this.http.delete(`${this.API_URL}/${id}`).subscribe(
+      () => {
+        const index = this.list.findIndex(t => t.id == id);
+        this.list.splice(index, 1);
+        this.$listenerSubject.next([...this.list]);
+      },
+      err => console.log('HTTP Error', err)
+    );
+  }
+
+  public getListener() {
+    return this.$listenerSubject;
   }
 }

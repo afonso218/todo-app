@@ -11,6 +11,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoService } from './services/todo.service';
 import { FormsModule } from '@angular/forms';
 import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
+import { MatIconService } from './services/mat.icon.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [TodoService],
+  providers: [TodoService, MatIconService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

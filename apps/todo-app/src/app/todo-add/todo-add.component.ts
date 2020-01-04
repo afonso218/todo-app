@@ -6,16 +6,14 @@ import { TodoService } from '../services/todo.service';
   templateUrl: './todo-add.component.html',
   styleUrls: ['./todo-add.component.css']
 })
-export class TodoAddComponent implements OnInit {
+export class TodoAddComponent {
   newTodoContent: string;
 
   constructor(private todoService: TodoService) {}
 
-  ngOnInit() {}
-
   addNewTodo() {
     if (this.newTodoContent !== '') {
-      this.todoService.addTodo(this.newTodoContent);
+      this.todoService.create(this.newTodoContent);
       this.newTodoContent = '';
     }
   }
