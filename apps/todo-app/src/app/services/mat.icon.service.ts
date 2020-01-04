@@ -13,7 +13,7 @@ export class MatIconService {
       iconRegistry.addSvgIcon(
         icon_name,
         sanitizer.bypassSecurityTrustResourceUrl(
-          'assets/icons/' + icon_name + '.svg'
+          '/assets/icons/' + icon_name + '.svg'
         )
       );
     });
